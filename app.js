@@ -2,6 +2,13 @@ const inquirer = require("inquirer");
 
 const axios = require('axios');
 
+class Album {
+    static async all() {
+       let res = await axios.get('https://jsonplaceholder.typicode.com/photos?albumId=3');
+      return res.data
+     }
+}
+
 const start = async (userInput) => {
 
     inquirer.prompt([
@@ -9,7 +16,7 @@ const start = async (userInput) => {
         {
             name: "userInput",
             type: "input",
-            message: "select the album id by number",
+            message: "select the album id by number 1-100",
             validate: function (id) {
                 userInput = id
                 if (!isNaN(id) && id != 0 && id < 101) {
@@ -23,11 +30,11 @@ const start = async (userInput) => {
 
         axios.get(`https://jsonplaceholder.typicode.com/photos?albumId=${userInput}`).then(
             function (response) {
+                let log;
                 for (let i = 0; i < response.data.length; i++) {
-
-                    console.log("[" + response.data[i].id + "]" + " " + response.data[i].title);
+                    log = ("[" + response.data[i].id + "]" + " " + response.data[i].title)
+                    console.log(log);
                     console.log(" ")
-
                 }
 
             }).catch(function (error) {
@@ -38,9 +45,15 @@ const start = async (userInput) => {
             });
 
 
-    
-})
+
+    })
 }
 start();
 
+
+module.exports = Album;
 module.exports = start;
+
+
+
+
