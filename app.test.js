@@ -70,8 +70,9 @@
 
 // });
 
+
+
 const axios = require('axios');
-const Album = require('./app');
 
 jest.mock('axios');
 
@@ -103,5 +104,5 @@ test('should return id and photo title', () => {
     console.log("[" + response.data[i].id + "]" + " " + response.data[i].title)
 
   }
-  return Album.all().then(response => expect(response).toEqual(album));
+
 });

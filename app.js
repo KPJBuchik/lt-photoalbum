@@ -2,13 +2,6 @@ const inquirer = require("inquirer");
 
 const axios = require('axios');
 
-class Album {
-    static async all() {
-       let res = await axios.get('https://jsonplaceholder.typicode.com/photos?albumId=3');
-      return res.data
-     }
-}
-
 const start = async (userInput) => {
 
     inquirer.prompt([
@@ -30,18 +23,17 @@ const start = async (userInput) => {
 
         axios.get(`https://jsonplaceholder.typicode.com/photos?albumId=${userInput}`).then(
             function (response) {
-                let log;
                 for (let i = 0; i < response.data.length; i++) {
-                    log = ("[" + response.data[i].id + "]" + " " + response.data[i].title)
-                    console.log(log);
-                    console.log(" ")
+    
+                    console.log("[" + response.data[i].id + "]" + " " + response.data[i].title);
+                    console.log(" ");
                 }
 
             }).catch(function (error) {
                 console.log(error);
             })
             .then(function () {
-                start()
+                start();
             });
 
 
@@ -51,9 +43,15 @@ const start = async (userInput) => {
 start();
 
 
-module.exports = Album;
+
+
+
+
+// class Album {
+//     static async all() {
+//         let res = await axios.get('https://jsonplaceholder.typicode.com/photos?albumId=3');
+//         return res.data
+//     }
+// }
+// module.exports = Album;
 module.exports = start;
-
-
-
-
