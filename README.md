@@ -10,6 +10,9 @@
 
 # Instructions
 
+Install dependencies by entering
+`npm i`
+
 While in root directory in console enter
 `node index`
 

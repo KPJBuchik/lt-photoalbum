@@ -7,7 +7,6 @@ const run = require('./console');
 jest.mock("axios");
 describe("run", () => {
   describe("when API call is successful", () => {
-    it("should return photo album", async () => {
       // dummy data
       const album = [
               {
@@ -22,7 +21,7 @@ describe("run", () => {
       axios.get.mockResolvedValueOnce(album);
 
       // when
-      const result =  run();
+      const result =  run(3);
 
       // then
       expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}3`);
@@ -35,10 +34,9 @@ describe("run", () => {
       const message = "Network Error";
       axios.get.mockRejectedValueOnce(new Error(message));
 
-      const result = await run(3);
+      const result =  run();
 
       expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}3`);
       expect(result).toEqual([]);
     });
   });
-});
