@@ -5,7 +5,7 @@ const  run  = require('./console');
 
 it(' return mock album data from axios get request', async () => {
   const id = 3;
-  const album = [
+  const album = {data:[
                   {
               albumId: 3,
               id: 1,
@@ -19,10 +19,11 @@ it(' return mock album data from axios get request', async () => {
               url: "https://via.placeholder.com/600/e743b",
               thumbnailUrl: "https://via.placeholder.com/150/e743b"
             }
+          
     
             
     
-          ]
+          ]}
 
   axios.get.mockResolvedValue(album);
 
