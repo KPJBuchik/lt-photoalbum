@@ -16,7 +16,8 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.22.0",
-    "inquirer": "^8.1.5"
+    "inquirer": "^8.1.5",
+    "jest-mock-axios": "^4.4.1"
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.20.0",

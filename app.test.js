@@ -1,60 +1,44 @@
 const axios = require('axios');
-jest.mock('axios');
-//tests structure of API
 
-test('should return id and photo title', () => {
+const BASE_URL = "https://jsonplaceholder.typicode.com/photos?albumId=";
 
-  const album = [{
-    albumId: 3,
-    id: 1,
-    title: 'accusamus beatae ad facilis cum similique qui sunt',
-    url: "https://via.placeholder.com/600/e743b",
-    thumbnailUrl: "https://via.placeholder.com/150/e743b"
-  },
+const run = require('./console');
 
-  {
-    albumId: 3,
-    id: 2,
-    title: 'reprehenderit est deserunt velit ipsam',
-    url: "https://via.placeholder.com/600/e743b",
-    thumbnailUrl: "https://via.placeholder.com/150/e743b"
+jest.mock("axios");
+describe("run", () => {
+  describe("when API call is successful", () => {
+    it("should return photo album", async () => {
+      // dummy data
+      const album = [
+              {
+          albumId: 3,
+          id: 1,
+          title: 'accusamus beatae ad facilis cum similique qui sunt',
+          url: "https://via.placeholder.com/600/e743b",
+          thumbnailUrl: "https://via.placeholder.com/150/e743b"
+        }
 
-  }
-  ];
+      ];
+      axios.get.mockResolvedValueOnce(album);
 
-  const response = { data: album };
+      // when
+      const result =  run();
 
-  axios.get.mockResolvedValue(response);
+      // then
+      expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}3`);
+      expect(result).toEqual(album);
+    });
+  });
 
-  for (let i = 0; i < response.data.length; i++) {
+  describe("when API call fails", () => {
+    it("should return empty users list", async () => {
+      const message = "Network Error";
+      axios.get.mockRejectedValueOnce(new Error(message));
 
-     console.log("[" + response.data[i].id + "]" + " " + response.data[i].title)
+      const result = await run(3);
 
-  }
-
+      expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}3`);
+      expect(result).toEqual([]);
+    });
+  });
 });
-
-test('should return undefined ', () => {
-
-  const album = [{
-    url: "https://via.placeholder.com/600/e743b",
-    thumbnailUrl: "https://via.placeholder.com/150/e743b"
-  },
-  {
-    url: "https://via.placeholder.com/600/e743b",
-    thumbnailUrl: "https://via.placeholder.com/150/e743b"
-
-  }
-  ];
-
-  const response = { data: album };
-
-  axios.get.mockResolvedValue(response);
-  for (let i = 0; i < response.data.length; i++) {
-
-     console.log("[" + response.data[i].id + "]" + " " + response.data[i].title)
-
-  }
-
-});
-

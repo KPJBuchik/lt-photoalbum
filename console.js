@@ -1,9 +1,9 @@
 const inquirer = require("inquirer");
 const axios = require('axios');
 let input;
-function run(userInput) {
+
+function run() {
     // retrieve json data 
-    userInput= input
     axios.get(`https://jsonplaceholder.typicode.com/photos?albumId=${input}`).then(
         function (response) {
             //loop through specified album id 
@@ -15,12 +15,13 @@ function run(userInput) {
             //catch error if connection cannot be made to api    
         }).catch(function (error) {
             console.log(error);
+            return [];
         })
         .then(function () {
             start();
         });
 
-}
+};
 
 function start() {
 
@@ -36,7 +37,7 @@ function start() {
                     return true;
                 }
                 if (id === "q"){
-                    process.exit(0)
+                    process.exit(0);
                 }
 
                 return false;
@@ -45,10 +46,9 @@ function start() {
 
     ]).then(function () {
 
-        let url = `https://jsonplaceholder.typicode.com/photos?albumId=${input}`
-        run(url)
-    })
-}
+        run();
+    });
+};
 
-module.exports = start;
 module.exports = run;
+
