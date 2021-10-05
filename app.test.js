@@ -1,5 +1,6 @@
 jest.mock('axios');
 
+const { expect } = require('@jest/globals');
 const axios = require('axios');
 const  run  = require('./console');
 
