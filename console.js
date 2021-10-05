@@ -36,7 +36,9 @@ function start(userInput) {
                     return true;
                 }
                 if (id === "q") {
+                    console.log( '\n', "##Goodbye##")
                     process.exit(0);
+                    
                 }
 
                 return false;

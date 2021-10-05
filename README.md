@@ -1,6 +1,6 @@
 # lt-photoalbum
 
-Performs a get request on JSON data from a [Placeholder API](https://jsonplaceholder.typicode.com/photos) and displays the id and title of a selected album. 
+Performs a get request on JSON data from a [Placeholder API](https://jsonplaceholder.typicode.com/photos) and displays the photo's titles and IDs of a selected album. 
 
 
 # Technologies Used
