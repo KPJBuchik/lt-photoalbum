@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const axios = require('axios');
 
+
 function run(input) {
     // retrieve json data 
     axios.get(`https://jsonplaceholder.typicode.com/photos?albumId=${input}`).then(
@@ -14,7 +15,6 @@ function run(input) {
             //catch error if connection cannot be made to api    
         }).catch(function (error) {
             console.log(error);
-            return [];
         })
         .then(function () {
             start();
@@ -23,19 +23,19 @@ function run(input) {
 };
 
 function start(userInput) {
-//collect user input
+    //collect user input
     inquirer.prompt([
 
         {
             name: "userInput",
             type: "input",
-            message: "Select the album id by number 1-100. q to exit",
+            message: "Select the album id by number 1-100 or q to exit",
             validate: function (id) {
                 userInput = id
                 if (!isNaN(id) && id != 0 && id < 101) {
                     return true;
                 }
-                if (id === "q"){
+                if (id === "q") {
                     process.exit(0);
                 }
 

@@ -2,10 +2,11 @@
 
 
 # Technologies Used
-* Node.JS
-* Axios
+* JavaScript
+* Node
 * Jest
-* Inquirer 
+* Axios NPM
+* Inquirer NPM
 
 
 # Instructions
@@ -14,10 +15,10 @@ Install dependencies by entering
 `npm i`
 
 While in root directory in console enter
-`node index`
+`node app`
 
-The prompt will direct you to select the album ID from 1-100.  
-`1`
+The prompt will direct you to select an album ID from 1-100.  
+`45`
 
 to unit test using Jest enter
 `npm test`

@@ -1,30 +1,32 @@
-jest.mock('axios');
-
-const { expect } = require('@jest/globals');
+//npm test 
 const axios = require('axios');
-const  run  = require('./console');
+const run = require('./console');
+
+jest.mock('axios');
 
 it(' return mock album data from axios get request', async () => {
   const id = 3;
-  const album = {data:[
-                  {
-              albumId: 3,
-              id: 1,
-              title: 'accusamus beatae ad facilis cum similique qui sunt',
-              url: "https://via.placeholder.com/600/e743b",
-              thumbnailUrl: "https://via.placeholder.com/150/e743b"
-            },{
-              albumId: 3,
-              id: 1,
-              title: 'accusamus beatae ad facilis cum similique qui sunt',
-              url: "https://via.placeholder.com/600/e743b",
-              thumbnailUrl: "https://via.placeholder.com/150/e743b"
-            }
-          
-    
-            
-    
-          ]}
+  const album = {
+    data: [
+      {
+        albumId: 3,
+        id: 1,
+        title: 'accusamus beatae ad facilis cum similique qui sunt',
+        url: "https://via.placeholder.com/600/e743b",
+        thumbnailUrl: "https://via.placeholder.com/150/e743b"
+      }, {
+        albumId: 3,
+        id: 2,
+        title: 'accusamus beatae ad facilis cum similique qui sunt',
+        url: "https://via.placeholder.com/600/e743b",
+        thumbnailUrl: "https://via.placeholder.com/150/e743b"
+      }
+
+
+
+
+    ]
+  }
 
   axios.get.mockResolvedValue(album);
 
