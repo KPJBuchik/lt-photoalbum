@@ -1,6 +1,7 @@
 const axios = require('axios');
 jest.mock('axios');
-//tests json structure of API
+//tests structure of API
+
 test('should return id and photo title', () => {
 
   const album = [{
