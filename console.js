@@ -22,16 +22,19 @@ function run(input) {
 
 };
 
+/*
+  NOTE:  I don't think userInput needs to be an argument here. We could simply define this variable as let inside start.
+*/
 function start(userInput) {
     //collect user input
     inquirer.prompt([
-
         {
             name: "userInput",
             type: "input",
             message: "Select the album id by number 1-100 or q to exit",
             validate: function (id) {
                 userInput = id
+                /* NOTE: what if id = -1? */
                 if (!isNaN(id) && id != 0 && id < 101) {
                     return true;
                 }
@@ -40,7 +43,9 @@ function start(userInput) {
                     process.exit(0);
                     
                 }
-
+                /*
+                NOTE: If you return a string here it will display as error message which is helpful for 
+                */
                 return false;
             }
         }
@@ -51,5 +56,6 @@ function start(userInput) {
     });
 };
 
+/* NOTE: I think start should be exported here*/
 module.exports = run;
 
